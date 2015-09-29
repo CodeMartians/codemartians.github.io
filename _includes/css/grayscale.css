@@ -368,8 +368,9 @@ img::-moz-selection {
     background: 0 0;
 }
 
-img::cm-mark {
-  background: 64px 64px;
+.cm-mark {
+  margin-top:-10px;
+  height: 38px;
 }
 
 body {
