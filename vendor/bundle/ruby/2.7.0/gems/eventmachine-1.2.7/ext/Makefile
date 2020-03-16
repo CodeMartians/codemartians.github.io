@@ -12,12 +12,12 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /Users/mmaheu/.rbenv/versions/2.7.0/include/ruby-2.7.0
+topdir = /home/mmaheu/.rvm/rubies/ruby-2.7.0/include/ruby-2.7.0
 hdrdir = $(topdir)
-arch_hdrdir = /Users/mmaheu/.rbenv/versions/2.7.0/include/ruby-2.7.0/x86_64-darwin19
+arch_hdrdir = /home/mmaheu/.rvm/rubies/ruby-2.7.0/include/ruby-2.7.0/x86_64-linux
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/Users/mmaheu/.rbenv/versions/2.7.0
+prefix = $(DESTDIR)/home/mmaheu/.rvm/rubies/ruby-2.7.0
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20200106-99957-1w64963
-sitelibdir = $(DESTDIR)./.gem.20200106-99957-1w64963
+sitearchdir = $(DESTDIR)./.gem.20200316-4608-t5hhi1
+sitelibdir = $(DESTDIR)./.gem.20200316-4608-t5hhi1
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -50,12 +50,12 @@ dvidir = $(docdir)
 htmldir = $(docdir)
 infodir = $(datarootdir)/info
 docdir = $(datarootdir)/doc/$(PACKAGE)
-oldincludedir = $(SDKROOT)/usr/include
+oldincludedir = $(DESTDIR)/usr/include
 includedir = $(prefix)/include
 runstatedir = $(localstatedir)/run
 localstatedir = $(prefix)/var
 sharedstatedir = $(prefix)/com
-sysconfdir = $(prefix)/etc
+sysconfdir = $(DESTDIR)/etc
 datadir = $(datarootdir)
 datarootdir = $(prefix)/share
 libexecdir = $(exec_prefix)/libexec
@@ -65,12 +65,12 @@ archdir = $(rubyarchdir)
 
 
 CC_WRAPPER = 
-CC = clang
-CXX = clang++
+CC = gcc
+CXX = g++
 LIBRUBY = $(LIBRUBY_SO)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
-LIBRUBYARG_SHARED = -l$(RUBY_SO_NAME)
-LIBRUBYARG_STATIC = -l$(RUBY_SO_NAME)-static -framework Security -framework Foundation $(MAINLIBS)
+LIBRUBYARG_SHARED = -Wl,-rpath,'$${ORIGIN}/../lib' -Wl,-rpath,'$${ORIGIN}/../lib' -l$(RUBY_SO_NAME)
+LIBRUBYARG_STATIC = -Wl,-rpath,'$${ORIGIN}/../lib' -Wl,-rpath,'$${ORIGIN}/../lib' -l$(RUBY_SO_NAME)-static $(MAINLIBS)
 empty =
 OUTFLAG = -o $(empty)
 COUTFLAG = -o $(empty)
@@ -81,31 +81,31 @@ cflags   = $(optflags) $(debugflags) $(warnflags)
 cxxflags = 
 optflags = -O3
 debugflags = -ggdb3
-warnflags = -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens
+warnflags = -Wall -Wextra -Wdeprecated-declarations -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable
 cppflags = 
-CCDLFLAGS = -fno-common
-CFLAGS   = $(CCDLFLAGS) $(cflags)  -fno-common -pipe $(ARCH_FLAG)
-INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
+CCDLFLAGS = -fPIC
+CFLAGS   = $(CCDLFLAGS) $(cflags)  -fPIC  $(ARCH_FLAG)
+INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir) 
 DEFS     = 
-CPPFLAGS = -DHAVE_OPENSSL_SSL_H -DHAVE_OPENSSL_ERR_H -DWITH_SSL -DBUILD_FOR_RUBY -DHAVE_RB_THREAD_CALL_WITHOUT_GVL -DHAVE_RB_THREAD_FD_SELECT -DHAVE_TYPE_RB_FDSET_T -DHAVE_RB_WAIT_FOR_SINGLE_FD -DHAVE_RB_TIME_NEW -DHAVE_WRITEV -DOS_UNIX -DHAVE_SYS_EVENT_H -DHAVE_SYS_QUEUE_H -DHAVE_KQUEUE -DOS_DARWIN -DHAVE_CLOCK_GETTIME -DHAVE_CONST_CLOCK_MONOTONIC_RAW -DHAVE_CONST_CLOCK_MONOTONIC -DHAVE_MAKE_PAIR -I/Users/mmaheu/.rbenv/versions/2.7.0/openssl/include -I/Users/mmaheu/.rbenv/versions/2.7.0/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
-CXXFLAGS = $(CCDLFLAGS) -g -O2 $(ARCH_FLAG)
-ldflags  = -L. -L/Users/mmaheu/.rbenv/versions/2.7.0/lib  -fstack-protector-strong -L/usr/local/lib
-dldflags = -L/Users/mmaheu/.rbenv/versions/2.7.0/lib  -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
+CPPFLAGS = -DHAVE_OPENSSL_SSL_H -DHAVE_OPENSSL_ERR_H -DWITH_SSL -DBUILD_FOR_RUBY -DHAVE_RB_THREAD_CALL_WITHOUT_GVL -DHAVE_RB_THREAD_FD_SELECT -DHAVE_TYPE_RB_FDSET_T -DHAVE_RB_WAIT_FOR_SINGLE_FD -DHAVE_RB_TIME_NEW -DHAVE_INOTIFY_INIT -DHAVE_INOTIFY -DHAVE_WRITEV -DHAVE_PIPE2 -DHAVE_ACCEPT4 -DHAVE_CONST_SOCK_CLOEXEC -DOS_UNIX -DHAVE_EPOLL_CREATE -DHAVE_EPOLL -DHAVE_CLOCK_GETTIME -DHAVE_CONST_CLOCK_MONOTONIC_RAW -DHAVE_CONST_CLOCK_MONOTONIC -DHAVE_MAKE_PAIR  $(DEFS) $(cppflags)
+CXXFLAGS = $(CCDLFLAGS) -g -O2  $(ARCH_FLAG)
+ldflags  = -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic 
+dldflags = -Wl,--compress-debug-sections=zlib 
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
-LDSHARED = $(CXX) -dynamic -bundle
-LDSHAREDXX = $(CXX) -dynamic -bundle
-AR = libtool -static
+LDSHARED = $(CXX) -shared
+LDSHAREDXX = $(CXX) -shared
+AR = ar
 EXEEXT = 
 
 RUBY_INSTALL_NAME = $(RUBY_BASE_NAME)
-RUBY_SO_NAME = ruby.2.7
+RUBY_SO_NAME = ruby
 RUBYW_INSTALL_NAME = 
 RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = x86_64-darwin19
+arch = x86_64-linux
 sitearch = $(arch)
 ruby_version = 2.7.0
 ruby = $(bindir)/$(RUBY_BASE_NAME)
@@ -114,9 +114,9 @@ ruby_headers = $(hdrdir)/ruby.h $(hdrdir)/ruby/backward.h $(hdrdir)/ruby/ruby.h 
 
 RM = rm -f
 RM_RF = $(RUBY) -run -e rm -- -rf
-RMDIRS = rmdir -p
-MAKEDIRS = mkdir -p
-INSTALL = /usr/bin/install -c
+RMDIRS = rmdir --ignore-fail-on-non-empty -p
+MAKEDIRS = /bin/mkdir -p
+INSTALL = /usr/bin/install
 INSTALL_PROG = $(INSTALL) -m 0755
 INSTALL_DATA = $(INSTALL) -m 644
 COPY = cp
@@ -125,8 +125,8 @@ TOUCH = exit >
 #### End of system configuration section. ####
 
 preload = 
-libpath = . $(libdir) /Users/mmaheu/.rbenv/versions/2.7.0/openssl/lib
-LIBPATH =  -L. -L$(libdir) -L/Users/mmaheu/.rbenv/versions/2.7.0/openssl/lib
+libpath = . $(libdir)
+LIBPATH =  -L. -L$(libdir) -Wl,-rpath,$(libdir)
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -137,16 +137,16 @@ extout =
 extout_prefix = 
 target_prefix = 
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED)   
+LIBS = $(LIBRUBYARG_SHARED)  -lssl -lcrypto -lcrypto -lssl -lm   -lc
 ORIG_SRCS = binder.cpp cmain.cpp ed.cpp em.cpp kb.cpp page.cpp pipe.cpp rubymain.cpp ssl.cpp
 SRCS = $(ORIG_SRCS) 
 OBJS = binder.o cmain.o ed.o em.o kb.o page.o pipe.o rubymain.o ssl.o
-HDRS = $(srcdir)/page.h $(srcdir)/binder.h $(srcdir)/ssl.h $(srcdir)/em.h $(srcdir)/project.h $(srcdir)/eventmachine.h $(srcdir)/ed.h
+HDRS = $(srcdir)/binder.h $(srcdir)/ed.h $(srcdir)/em.h $(srcdir)/eventmachine.h $(srcdir)/page.h $(srcdir)/project.h $(srcdir)/ssl.h
 LOCAL_HDRS = 
 TARGET = rubyeventmachine
 TARGET_NAME = rubyeventmachine
 TARGET_ENTRY = Init_$(TARGET_NAME)
-DLLIB = $(TARGET).bundle
+DLLIB = $(TARGET).so
 EXTSTATIC = 
 STATIC_LIB = 
 
@@ -260,7 +260,6 @@ $(TARGET_SO): $(OBJS) Makefile
 	$(ECHO) linking shared-object $(DLLIB)
 	-$(Q)$(RM) $(@)
 	$(Q) $(LDSHAREDXX) -o $@ $(OBJS) $(LIBPATH) $(DLDFLAGS) $(LOCAL_LIBS) $(LIBS)
-	$(Q) $(POSTLINK)
 
 
 
