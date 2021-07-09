@@ -1,0 +1,16 @@
+current directory: /Users/mmaheu/Development/codemartians.github.io/vendor/bundle/ruby/3.0.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+/Users/mmaheu/.rbenv/versions/3.0.1/bin/ruby -I /Users/mmaheu/.rbenv/versions/3.0.1/lib/ruby/3.0.0 -r ./siteconf20210709-5753-8ixd3a.rb extconf.rb
+creating Makefile
+
+current directory: /Users/mmaheu/Development/codemartians.github.io/vendor/bundle/ruby/3.0.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make DESTDIR\= clean
+
+current directory: /Users/mmaheu/Development/codemartians.github.io/vendor/bundle/ruby/3.0.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make DESTDIR\=
+compiling ruby_http_parser.c
+compiling ryah_http_parser.c
+linking shared-object ruby_http_parser.bundle
+
+current directory: /Users/mmaheu/Development/codemartians.github.io/vendor/bundle/ruby/3.0.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 ruby_http_parser.bundle ./.gem.20210709-5753-brejnx
